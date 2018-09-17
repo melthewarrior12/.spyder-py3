@@ -15,9 +15,13 @@ while int(play_str) != 0:
         if players_turn == True: #do i use elif
             print("Start --> Pile 1: ", pile_1, " Pile 2: ", pile_2) #int(pile_1) >= 0 and int(pile_2) >= 0: #condition to keep game playing, maybe unnecessay considering other while statement
             choose_pile = int(input("choose a pile 1 or 2: ")) 
+            if choose_pile not in [1,2]:
+                print("Pile must be 1 or 2 and non-empty. Please try again.")
+                continue
             if choose_pile == 1: 
                 player_remove = int(input("Choose stones to remove from pile: ")) #input number of stones to remove
-                while player_remove in range(1,3) and player_remove <= pile_1: #and pile_1 != 0:(unnecessary because statement just to left) #player_remove in range(1,3) and
+                if not player_remove in range(1,3) and player_remove <= pile_1:
+                #if player_remove in range(1,3) and player_remove <= pile_1: #and pile_1 != 0:(unnecessary because statement just to left) #player_remove in range(1,3) and
                     #if pile_1 != 0:
                     pile_1 = pile_1 - player_remove #remove number of stones from pile 1
                     print("pile 1:", pile_1)
@@ -35,7 +39,7 @@ while int(play_str) != 0:
                 print("\nPlayer wins!")
             #didnt need an else #switch turns
             players_turn = False
-        if players_turn == False: #computer's turn ##do i use elif
+        elif players_turn == False: #computer's turn ##do i use elif
             if choose_pile == 2 and pile_2 != 0: #computer chooses pile 2 if player chooses 1
                 #if pile_2 != 0:
                 pile_2 -= 1 #computer removes 1 stone
@@ -44,7 +48,9 @@ while int(play_str) != 0:
                 pile_1 -= 1 #computer removes 1 stone
                 print("pile 1: ", pile_1)
             if pile_1 == 0 and pile_2 == 0:
-                print("\nComputer wins!")
+                print("\nComputer wins!") 
+        elif pile_1 == 0 and pile_2 == 0:
+            game_over = True
         #else: #switch turns
             players_turn = True
     print("Testing:",play_str)# leave this as is (provided code) maybe delete later
