@@ -43,9 +43,11 @@ while int(play_str) != 0:
                 print("\nPlayer wins!")
             #didnt need an else #switch turns
             players_turn = False
+            tmp = [1,2]
+            tmp.remove(choose_pile)
         elif players_turn == False: #computer's turn ##do i use elif
-            print("Computer -> Remove 1 stones from pile ", not choose_pile)
-            print("Pile 1:", pile_1, "   Pile 2:", pile_2)
+            print("Computer -> Remove 1 stones from pile ", tmp[0])
+            #print("Pile 1:", pile_1, "   Pile 2:", pile_2)
             if choose_pile == 1 and pile_2 != 0: #choose_pile == and 2 #computer chooses pile 2 if player chooses 1
                 #if pile_2 != 0:
                 pile_2 -= 1 #computer removes 1 stone
