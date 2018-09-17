@@ -11,9 +11,10 @@ while int(play_str) != 0:
     pile_1, pile_2 = 5, 5 #starting number of stones
     players_turn = True #use to switch from players turn to computers turn
     game_over = False
+    print("Start --> Pile 1:", pile_1, "   Pile 2:", pile_2)
     while not game_over:
         if players_turn == True: #do i use elif
-            print("Start --> Pile 1:", pile_1, "   Pile 2:", pile_2) #int(pile_1) >= 0 and int(pile_2) >= 0: #condition to keep game playing, maybe unnecessay considering other while statement
+            #print("Pile 1:", pile_1, "   Pile 2:", pile_2) #int(pile_1) >= 0 and int(pile_2) >= 0: #condition to keep game playing, maybe unnecessay considering other while statement
             choose_pile = int(input("Choose a pile (1 or 2): ")) 
             if choose_pile not in [1,2]:
                 print("Pile must be 1 or 2 and non-empty. Please try again.")
@@ -52,12 +53,13 @@ while int(play_str) != 0:
             elif choose_pile == 2 and pile_1 != 0: #choose_pile == 1 and #and pile_1 == 0: #else: #if pile 2 is 0
                 pile_1 -= 1 #computer removes 1 stone
                 #print("Pile 1:", pile_1)
-                #print("pile 2: ", pile_2)
+                #print("Pile 2: ", pile_2)
             elif choose_pile == 1 and pile_2 == 0 and pile_1 !=0:
                 pile_1 -= 1 #computer removes 1 stone
             elif choose_pile == 2 and pile_1 == 0 and pile_2 !=0:
                 pile_2 -= 1 #computer removes 1 stone
             if pile_1 == 0 and pile_2 == 0:
+                print("Pile 1:", pile_1, "   Pile 2:", pile_2)
                 print("\nComputer wins!") 
             players_turn = True
         if pile_1 == 0 and pile_2 == 0:
