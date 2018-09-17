@@ -20,8 +20,7 @@ while int(play_str) != 0:
                 continue
             if choose_pile == 1: 
                 player_remove = int(input("Choose stones to remove from pile: ")) #input number of stones to remove
-                if not player_remove in range(1,3) and player_remove <= pile_1:
-                #if player_remove in range(1,3) and player_remove <= pile_1: #and pile_1 != 0:(unnecessary because statement just to left) #player_remove in range(1,3) and
+                if player_remove in range(1,4) and player_remove <= pile_1: #and pile_1 != 0:(unnecessary because statement just to left) #player_remove in range(1,3) and
                     #if pile_1 != 0:
                     pile_1 = pile_1 - player_remove #remove number of stones from pile 1
                     print("pile 1:", pile_1)
@@ -29,10 +28,10 @@ while int(play_str) != 0:
                     print("Invalid number of stones. Please try again.")
             if choose_pile == 2: #if player chooses pile 2 pile_1 == 0 and pile_2 == 0:
                 player_remove = int(input("Choose stones to remove from pile: ")) #input number of stones to remove
-                while player_remove in range(1,3) and player_remove <= pile_2:
+                if player_remove in range(1,4) and player_remove <= pile_2:
                     #if pile_2 != 0:
-                       pile_2 = pile_2 - player_remove
-                       print("pile 2:", pile_2)
+                    pile_2 = pile_2 - player_remove
+                    print("pile 2:", pile_2)
                 else: #if player_remove <= 0 and player_remove >=4:
                     print("Invalid number of stones. Please try again.")
             if pile_1 == 0 and pile_2 == 0:
@@ -44,15 +43,15 @@ while int(play_str) != 0:
                 #if pile_2 != 0:
                 pile_2 -= 1 #computer removes 1 stone
                 print("pile 2: ", pile_2)
-            if choose_pile == 1 and pile_1 != 0: #and pile_1 == 0: #else: #if pile 2 is 0
+            elif choose_pile == 1 and pile_1 != 0: #and pile_1 == 0: #else: #if pile 2 is 0
                 pile_1 -= 1 #computer removes 1 stone
                 print("pile 1: ", pile_1)
             if pile_1 == 0 and pile_2 == 0:
                 print("\nComputer wins!") 
-        elif pile_1 == 0 and pile_2 == 0:
+        if pile_1 == 0 and pile_2 == 0:
             game_over = True
         #else: #switch turns
-            players_turn = True
+        players_turn = True
     print("Testing:",play_str)# leave this as is (provided code) maybe delete later
     
     play_str = input("\nWould you like to play again? (0=no, 1=yes) ")
