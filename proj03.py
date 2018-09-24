@@ -20,7 +20,7 @@ while answer.upper() != 'Q': #given
             for lette in alphabet:
                 if lette not in ckey:
                     ckey += lette # adds the rest of the alphabet
-            print(ckey)
+            print(ckey) #allgood
             
             Cmessage = input ("Enter your message: ")
             cipher = ""
@@ -37,8 +37,10 @@ while answer.upper() != 'Q': #given
                 cipher += affine
             print("your encoded message: ", affine) # print word
         else: 
+            print("There is an error in the keyword. It must be all letters and a maximum length of 26")
             continue
-                
+    if answer == "D": #decript
+        print("notyet")#for now
                 
     print("Testing:", answer) #given
     answer = input("Would you like to (D)ecrypt, (E)ncrypt or (Q)uit? ") #given
