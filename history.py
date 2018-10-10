@@ -14,3 +14,15 @@ runfile('C:/Users/Mel/.spyder-py3/proj01.py', wdir='C:/Users/Mel/.spyder-py3')
 
 ## ---(Fri Sep 14 09:31:19 2018)---
 runfile('C:/Users/Mel/.spyder-py3/proj02.py', wdir='C:/Users/Mel/.spyder-py3')
+runfile('C:/Users/Mel/.spyder-py3/proj02.py', wdir='C:/Users/Mel/.spyder-py3')
+runfile('C:/Users/Mel/.spyder-py3/proj03.py', wdir='C:/Users/Mel/.spyder-py3')
+
+## ---(Sat Sep 29 13:49:07 2018)---
+runfile('C:/Users/Mel/.spyder-py3/proj01.py', wdir='C:/Users/Mel/.spyder-py3')
+runfile('C:/Users/Mel/.spyder-py3/proj04.py', wdir='C:/Users/Mel/.spyder-py3')
+runfile('C:/Users/Mel/.spyder-py3/proj04.py', wdir='C:/Users/Mel/.spyder-py3')
+
+
+
+subsequent_roll_result
+runfile('C:/Users/Mel/.spyder-py3/proj04.py', wdir='C:/Users/Mel/.spyder-py3')

@@ -571,7 +571,7 @@ solarized/dark/number = ('#cb4b16', False, False)
 solarized/dark/instance = ('#b58900', False, True)
 
 [run]
-breakpoints = {}
+breakpoints = {'C:\\Users\\Mel\\.spyder-py3\\proj03.py': []}
 history = 20
 configurations = [('C:\\Users\\Mel\\.spyder-py3\\temp.py', {'args/enabled': False, 'args': '', 'workdir/enabled': None, 'workdir': None, 'current': True, 'systerm': False, 'interact': False, 'post_mortem': False, 'python_args/enabled': False, 'python_args': '', 'clear_namespace': False, 'file_dir': True, 'cw_dir': False, 'fixed_dir': False, 'dir': ''})]
 defaultconfiguration = {}
