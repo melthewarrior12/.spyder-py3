@@ -1,6 +1,13 @@
 ''' Project 4 play the game of "Craps"
     player is promted for inputs to play the game 
-    which is computed within the functions'''
+    which is computed within the functions
+    main function plays the game calling other functions to shorten the main
+    main will play through first roll - win, loss or point
+    if the first roll results in point, the dice are rolled again
+    cases are presented if the subsequent roll is win, loss, or neither
+    if subsequent roll is neither the dice will be rolled again
+    after each win the player will be asked to play again
+    if play again is chosen, the player can add to balance and make a wager'''
 
 
 from cse231_random import randint  # the cse231 test random for Mimir testing
@@ -100,11 +107,14 @@ def main():
     display_game_rules()
     balance = get_bank_balance()
     while game_over != True:
-            wager = get_wager_amount()
-        #if is_valid_wager_amount(wager, balance) == False:
-        #    print("Error: wager > balance. Try again.")
-        #    continue
-        #else:
+        #prompt for wager
+        wager = get_wager_amount()
+        #check if wager is ok
+        if is_valid_wager_amount(wager, balance) == False:
+            print(" Error: wager > balance. Try again.")
+            continue
+        #otherwise play game
+        else: 
             roll1 = roll_die()
             roll2 = roll_die()
             print(" Die 1:", roll1)
@@ -116,13 +126,14 @@ def main():
                 print("You WIN!")
                 balance = balance + wager
                 print("Balance:", (balance))
+                #prompt for another game
                 play = input("Do you want to continue? ")
                 if play == "yes":
                     willadd = (input("Do you want to add to your balance?"))
                     if willadd == "yes":
-                        balance = add_to_bank_balance(input("Enter how many dollars to add to your balance:1"))
+                        balance = add_to_bank_balance(input("Enter how many dollars to add to your balance:"))
                         print("Balance", balance)
-                        wager = get_wager_amount() ### is wager in the right place?
+                        wager = get_wager_amount()
                     else: 
                         continue
                 else:
@@ -133,14 +144,13 @@ def main():
                 print("Craps.")
                 print("You lose.")
                 balance = balance - wager
-                print("Balance:", (balance))# - wager)) ####problem area for balance
-
+                print("Balance:", (balance))
+                #prompt for another game
                 play = input("Do you want to continue? ")         
                 if play == "yes":
-                    #balance = balance - wager
                     willadd = (input("Do you want to add to your balance?"))
                     if willadd == "yes":
-                        balance = add_to_bank_balance(input("Enter how many dollars to add to your balance:2"))
+                        balance = add_to_bank_balance(input("Enter how many dollars to add to your balance:"))
                         print("Balance", balance)
                         wager = get_wager_amount()
                     else: 
@@ -157,19 +167,19 @@ def main():
                 print("Die 1:", roll1)
                 print("Die 2:", roll2)
                 sum_dice = calculate_sum_dice(roll1, roll2)
-                print("Dice sum:", sum_dice)#########last output before death
+                print("Dice sum:", sum_dice)
                 if subsequent_roll_result(sum_dice, point_value) == "loss":
                     print("You lose.")
                     balance = balance - wager
                     print("Balance:", (balance))
+                    #prompt for another game
                     play = input("Do you want to continue? ")         
                     if play == "yes":
-                        #balance = balance - wager
                         willadd = (input("Do you want to add to your balance?"))
                         if willadd == "yes":
-                            balance = add_to_bank_balance(input("Enter how many dollars to add to your balance:3"))
+                            balance = add_to_bank_balance(input("Enter how many dollars to add to your balance:"))
                             print("Balance", balance)
-                            wager = get_wager_amount() ### is wager in the right place?
+                            wager = get_wager_amount()
                     else:
                         print("Game is over.")
                         game_over = True
@@ -179,21 +189,20 @@ def main():
                     print("You WIN!")
                     balance = balance + wager
                     print("Balance:", (balance))
+                    #prompt for another game
                     play = input("Do you want to continue? ")         
                     if play == "yes":
-                        #####balance = balance - wager ##### not sure if this is subtracting from the correct balance
                         willadd = (input("Do you want to add to your balance?"))
                         if willadd == "yes":
-                            balance = add_to_bank_balance(input("Enter how many dollars to add to your balance:4"))
+                            balance = add_to_bank_balance(input("Enter how many dollars to add to your balance:"))
                             print("Balance", balance)
-                            wager = get_wager_amount() ### is wager in the right place?
+                            wager = get_wager_amount() 
                             continue
                     else:
                         print("Game is over.")
                         game_over = True
                         break
                 while subsequent_roll_result(sum_dice, point_value) == "neither":
-                    #continue
                     roll1 = roll_die()
                     roll2 = roll_die()
                     print("Die 1:", roll1)
@@ -204,14 +213,14 @@ def main():
                         print("You lose.")
                         balance = balance - wager
                         print("Balance:", (balance))
+                        #prompt for another game
                         play = input("Do you want to continue? ")         
                         if play == "yes":
-                            #balance = balance - wager
                             willadd = (input("Do you want to add to your balance?"))
                             if willadd == "yes":
                                 balance = add_to_bank_balance(input("Enter how many dollars to add to your balance:"))
                                 print("Balance", balance)
-                                wager = get_wager_amount() ### is wager in the right place?
+                                wager = get_wager_amount()
                         else:
                             print("Game is over.")
                             game_over = True
@@ -219,24 +228,21 @@ def main():
                     if subsequent_roll_result(sum_dice, point_value) == "point":
                         print("You matched your Point.")
                         print("You WIN!")
-                        #print("Balance:", balance)
-                        #print("wager", wager)
                         balance = balance + wager
-                        print("Balance:", (balance)) ######problem area
-
+                        print("Balance:", (balance))
+                        #prompt for another game
                         play = input("Do you want to continue? ")         
                         if play == "yes":
-                            #balance = balance + wager ##### not sure if this is subtracting from the correct balance
                             willadd = (input("Do you want to add to your balance?"))
                             if willadd == "yes":
                                 balance = add_to_bank_balance(input("Enter how many dollars to add to your balance:"))
                                 print("Balance", balance)
-                                wager = get_wager_amount() ### is wager in the right place?
+                                wager = get_wager_amount()
                         else:
                             print("Game is over.")
                             game_over = True
                     continue
-            #break         
+
 
 
 

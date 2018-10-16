@@ -26,3 +26,8 @@ runfile('C:/Users/Mel/.spyder-py3/proj04.py', wdir='C:/Users/Mel/.spyder-py3')
 
 subsequent_roll_result
 runfile('C:/Users/Mel/.spyder-py3/proj04.py', wdir='C:/Users/Mel/.spyder-py3')
+
+## ---(Thu Oct 11 19:21:29 2018)---
+runfile('C:/Users/Mel/.spyder-py3/proj05.py', wdir='C:/Users/Mel/.spyder-py3')
+runfile('C:/Users/Mel/.spyder-py3/lab06.py', wdir='C:/Users/Mel/.spyder-py3')
+runfile('C:/Users/Mel/.spyder-py3/proj05.py', wdir='C:/Users/Mel/.spyder-py3')
