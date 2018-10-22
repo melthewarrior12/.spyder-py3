@@ -1,9 +1,19 @@
-'''Put overall header comments here.'''
+'''Computer Project #5
+    Prompt user for a file to be analyzed
+    pass through first 2 lines of code
+    print headers
+    for loop used to find continent names
+        embedded for loop to find change
+            embedded if loop to find max change alng with year
+        if loop to find max change of all continents.
+        print with format
+'''
 
 def open_file():
     '''Returns fp to the file. Opened by asking user for the file name.
     Error checking required, keep prompting until a valid file is entered.'''
     while True:
+        #continually prompts user until correct file name given
         try:  
             usefile = input("Enter a file name: \n")
             fp = open(usefile, 'r')
@@ -66,12 +76,10 @@ def format_display_linemax(continent, maxyear, maxmaxdelta):
     percent = (maxmaxdelta * 100)
     percent = int(round(percent))
     percent = str(percent) + "%"
-    
     return("{:<26s}{}{:>10s}".format(continent,yearst,percent))
 
-def main(): ## should only be about this long 
+def main():
     '''Take no input, return nothing, call functions. Close file here.'''
-
 
    #Prompt user for a file to be analyzed
     fp = open_file() #runs the function to prompt for 
@@ -90,150 +98,35 @@ def main(): ## should only be about this long
     for line in fp:
         #name is the name of the continent
         continent = line[:15].strip()
-        print(continent)
+        #print(continent)
         maxdelta = 0
-        #columnyear = 0
+
         #this loop calculates each of the deltas (there are 6 deltas)
         for i in range(6): #range is 6 because 6 deltas i is the column
-            #change = to the function called starting at the end of the name to end of range plus 1 (=6 total)
-            change = calc_delta(line,i+1) #starts at column 1+1 because column i0 is the names
-            #delta = int(round(delta))
+            #starting at the end of the name to end of range plus 1 (=6 total)
+            change = calc_delta(line,i+1) #column i+1 b/c column i0 are names
+            
             #comparing to maxdelta to delta
             if change >= maxdelta:
                 maxdelta = change 
-                #one is added each time a new max is found but will be behinf if no new year is found
-                #year=1750+(50*c_number)
-                #should keep track of the year by using the same column pulled for the delta
+                
+                #keep track of the year using same column pulled for the delta
                 year = years[15+6*(i):15+6*(i+1)]
                 year = int(year) + 50
-                # need to keep track of the year the delta happened (or the i? reassign the years as well 
-                #KEEP TRACK OF TIME WILL WILL BE DONE SIMILARLY TO THE WAY WE USED THE COLUMNS IN THE CALCDELTA FUNCTION
-            #logic for max delta
-
-
-        print(year)    
-        print(maxdelta)#in the right place to print?
-        #this might break everything but the format function needs it?
-        ########################################################delta = maxdelta
-        #################delta = maxdelta
+                
+        delta = maxdelta
         
         if maxdelta >= maxmaxdelta:
             maxmaxdelta = maxdelta
-            #probably wrong
-            ####################################################maxyear = year
+            maxcontinent = continent
+            maxyear = year
     
-    #print("outoutofloop", year)    
-    #print("maxdeltaoutoutofloop", maxdelta)
-    #TESTING
-    #print("together", str(year) + "-" + str(int(year) + 50))
-    #print(maxdelta)
+        #display the formatted output by calling the display functions
+        print(format_display_line(continent,year,delta))
+        
+    #display formatted outpuf for max of max
+    print("\n"+"Maximum of all continents:"+"\n"+format_display_linemax(maxcontinent, maxyear, maxmaxdelta))
     
-    ##print headers
-    #print_headers()
-    
-    
-    ###display the formatted output by calling the display functions
-    #####################################format_display_line(continent,year,delta)
-    #need these inputs
-
-    print("Maximum of all continents:      ")
-    #######################format_display_linemax(continent, maxyear, maxmaxdelta)
 
 if __name__ == "__main__":
     main()
-    
-    
-  
-
-
-'''    
-    start = 0 # starting number is located at 0
-    for ch in fp: #for each character in a line from file
-        numbers = ch[15:] #.strip() # where the numbers begin
-    for i in range (7): # wants just the index for the number location
-        first = i[start:start+6] #start at 0 and end at 0+6 <-- used to find only the numbers
-        print(first)
-        start += 6 #instead of printing the very first number it will now print the next number when it loops around
-    return numbers, first'''
-    
-'''#first number in set until 6 index over #####should it be changed by the value i+6?
-    number1 = i[15:21].strip()
-    #second number in set from first number end until 6 over #####should it be changed by the value i+6?
-    number2 = i[21:27].strip()
-    change = (int(number2) - int(number1))/ int(number1)
-    #should be able to round the change
-    change = ("%.2f" % change)
-    #####now change for the next value loop'''
-
-'''
-    for i in range(6):
-        #first number in set until 6 index over #####should it be changed by the value i+6?
-        number1 = i[15:21].strip()
-        #second number in set from first number end until 6 over #####should it be changed by the value i+6?
-        number2 = i[21:27].strip()
-        change = (int(number2) - int(number1))/ int(number1)
-        #should be able to round the change
-        change = ("%.2f" % change)
-        #####now change for the next value loop
-        ###logic for max of max deltas
-        '''
-'''   
-(Hint: I developed the slice values by writing a short program that had a string that was
-one line of the file and then I looped through the string using slicing to print the pairs of
-values, e.g. for Africa I printed 106 & 107, 107 & 111, 111 & 133, etc. Once I could do
-that, I knew that I could slice out the desired values and then the rest was easy.)'''
-
- 
-'''
-    start = 0 # starting number is located at 0
-    for ch in fp: #for each character in a line from file
-        numbers = ch[15:] #.strip() # where the numbers begin
-    for i in range (7): # wants just the index for the number location
-        first = i[start:start+6] #start at 0 and end at 0+6 <-- used to find only the numbers
-        print(first)
-        start += 6 #instead of printing the very first number it will now print the next number when it loops around
-    return numbers, first'''
-        
-'''   
-    numbers = "" ######################################## note from teacher
-    numbers = str()
-    numbers = line[15:] #numbers are where the numbers begin
-    print(numbers)
-    start = 0 #starting number is located at 0
-    for i in range (7): # wants just the 6 index for the number location
-        first = numbers[start:start+6] #start at 0 and end at 0+6 <-- used to find only the numbers
-        print(first)
-        start += 6 #instead of printing the very first number it will now print the next number when it loops around
-    return name, numbers, first
-    
-    change = (line + i+1)/ (line) # not even close'''
-    
-'''
-    calc_delta is supposed to calculate one value at a time only. 
-    need a nested loop in you main function. 
-    outer loop goes through each line in the file and the inner loop is range(6),
-    that is because each line has 6 deltas.
-    The the inner loop will give you your column.
-    And that way you can find the maximum delta for each line. 
-    And also the maximum delta for the entire file.'''
-    
-''' 
-"Enter a file name: "
-"Error. Please try again."
-"Maximum Population Change by Continent\n"
-"{:<26s}{:>9s}{:>10s}".format("Continent","Years","Delta")
-"\nMaximum of all continents:"
-
-'''
-
-
-
-'''
-a) Initialize the maximum to be a small number, e.g. zero. This is usually done before a loop.
-b) If a new value is greater than the existing maximum, assign maximum to be the new value.
-Also, you may want to update associated values, e.g the year of the new maximum.
-3) Items 1-9 of the Coding Standard will be enforced for this project.
-4) We provide a proj05.py program for you to start with.
-5) Use of advanced data structures such as list, sets, and dictionaries is prohibited.
-
-'''

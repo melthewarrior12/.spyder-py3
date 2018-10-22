@@ -31,3 +31,19 @@ runfile('C:/Users/Mel/.spyder-py3/proj04.py', wdir='C:/Users/Mel/.spyder-py3')
 runfile('C:/Users/Mel/.spyder-py3/proj05.py', wdir='C:/Users/Mel/.spyder-py3')
 runfile('C:/Users/Mel/.spyder-py3/lab06.py', wdir='C:/Users/Mel/.spyder-py3')
 runfile('C:/Users/Mel/.spyder-py3/proj05.py', wdir='C:/Users/Mel/.spyder-py3')
+
+## ---(Fri Oct 19 11:10:30 2018)---
+ls = ["a","b,","d"]
+]
+ls = ["a","b","c","d"]
+ls
+for i,ch in enumerate(ls):
+        print(i,ch)
+        
+runfile('C:/Users/Mel/.spyder-py3/proj06.py', wdir='C:/Users/Mel/.spyder-py3')
+
+## ---(Sat Oct 20 17:34:08 2018)---
+runfile('C:/Users/Mel/.spyder-py3/proj06.py', wdir='C:/Users/Mel/.spyder-py3')
+
+## ---(Sun Oct 21 17:52:39 2018)---
+runfile('C:/Users/Mel/.spyder-py3/proj06.py', wdir='C:/Users/Mel/.spyder-py3')
