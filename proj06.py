@@ -124,11 +124,10 @@ iii. total count of non-citizens (int)
 iv. total residents, i.e. the sum of native_born + naturalized + non-native'''
 
     #probably need to officially take from the actual function but this should work for now
-    sorted_tup = [('Alabama', 4699671, 163629, 0.03294111631266611, 104018, 0.02094047532290061), ('Alaska', 684530, 57364, 0.07484024496207367, 24592, 0.032084082422901394)]
-    
-    ct_native = sum([x[1] for x in sorted_tup])
-    ct_natural = sum([x[2] for x in sorted_tup])
-    ct_non_citizens = sum([x[4] for x in sorted_tup])
+       
+    ct_native = sum([x[1] for x in data_sorted])
+    ct_natural = sum([x[2] for x in data_sorted])
+    ct_non_citizens = sum([x[4] for x in data_sorted])
     tot_pop = int(ct_native) + int(ct_natural) + int(ct_non_citizens)
     tup = (ct_native, ct_natural, ct_non_citizens, tot_pop)
     return tup
@@ -177,7 +176,7 @@ def main():
     Only call plot_data if the prompt returns “yes”.'''
     open_file(), open_file()
     #print("                               2016 Population: Native, Naturalized, Non-Citizen                                \n")
-    print('{:<31s}'.format("2016 Population: Native, Naturalized, Non-Citizen"))
+    print('{:>31s}'.format("2016 Population: Native, Naturalized, Non-Citizen"))
     print('{:<20s}{:>15s}{:>17s}{:>22s}{:>16s}{:>22s}'.format("State","Native","Naturalized","Percent Naturalized","Non-Citizen","Percent Non-Citizen"))
     #find_index(header_lst,s)
     #read_2016_file(fp)
@@ -191,12 +190,12 @@ def main():
     {:<20s}{:>15s}{:>17s}{:>22s}{:>16s}{:>22s}
     ''' 
     
+  
     
-                               
     
-    #31
+    #31#32                                
     
-    print("----------------------------------------------------------------------------------------------------------------")
+    print("----------------------------------------------------------------------------------------------------------------\n")
     to_plot = input("Do you want to plot? ")
     if to_plot == "yes":
         plot_data(native_list, naturalized_list, non_citizen_list)
