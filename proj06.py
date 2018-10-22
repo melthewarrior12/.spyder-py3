@@ -177,7 +177,7 @@ def main():
     Only call plot_data if the prompt returns “yes”.'''
     open_file(), open_file()
     #print("                               2016 Population: Native, Naturalized, Non-Citizen                                \n")
-    print('{:31s}'.format("2016 Population: Native, Naturalized, Non-Citizen"))
+    print('{:<31s}'.format("2016 Population: Native, Naturalized, Non-Citizen"))
     print('{:<20s}{:>15s}{:>17s}{:>22s}{:>16s}{:>22s}'.format("State","Native","Naturalized","Percent Naturalized","Non-Citizen","Percent Non-Citizen"))
     #find_index(header_lst,s)
     #read_2016_file(fp)
@@ -194,7 +194,7 @@ def main():
     
                                
     
-    31
+    #31
     
     print("----------------------------------------------------------------------------------------------------------------")
     to_plot = input("Do you want to plot? ")
