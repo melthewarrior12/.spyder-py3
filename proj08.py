@@ -25,6 +25,7 @@ The function will loop until it opens a file. Returns a file pointer.
 Most likely will need to include special statement to read the Unicode chars:
     encoding ="windows-1252" e.g.
  fp = open("diabetes_data_small.csv",encoding ="windows-1252")'''
+ 
     usefile = input("Please enter a file name: \n")
     while True:
         #continually prompts user until correct file name given
@@ -33,6 +34,7 @@ Most likely will need to include special statement to read the Unicode chars:
             return fp
         except FileNotFoundError:
             fp = input("File not found. Please enter a valid file name:")
+
     
     
 def create_dictionary(fp):
@@ -298,7 +300,7 @@ Keep in mind that the program evaluates “Quit” and “qUIt” and “quiT”
     ''')
 
         region = input("Enter region code ('quit' to terminate):")
-        if region == "QUIT":
+        if region.upper() == "QUIT":
             x == False
             break
         try:
@@ -324,8 +326,8 @@ Keep in mind that the program evaluates “Quit” and “qUIt” and “quiT”
         if toplot == "no":
             continue
 
-        region = region.upper()
-        if region == "QUIT":
+        #region = region.upper()
+        if region.upper() == "QUIT":
             x == False
 
 
