@@ -47,3 +47,10 @@ runfile('C:/Users/Mel/.spyder-py3/proj06.py', wdir='C:/Users/Mel/.spyder-py3')
 
 ## ---(Sun Oct 21 17:52:39 2018)---
 runfile('C:/Users/Mel/.spyder-py3/proj06.py', wdir='C:/Users/Mel/.spyder-py3')
+
+## ---(Wed Oct 24 20:37:58 2018)---
+runfile('C:/Users/Mel/.spyder-py3/proj07.py', wdir='C:/Users/Mel/.spyder-py3')
+
+## ---(Sun Nov 11 17:36:05 2018)---
+runfile('C:/Users/Mel/.spyder-py3/proj08.py', wdir='C:/Users/Mel/.spyder-py3')
+runfile('C:/Users/Mel/.spyder-py3/proj08.py', wdir='C:/Users/Mel/.spyder-py3')

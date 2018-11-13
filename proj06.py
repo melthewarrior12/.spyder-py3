@@ -1,6 +1,29 @@
-#source code header?
-
-
+''' open files, reprompting until correct file is input and redefine
+    call read_file_2016 using the first opened file and redefine
+    call read_file_2000 using the second opened file and redefine
+    print out the desired title formats
+    print out the data with the list locations taken from the redefined read_file_2016 function
+    
+    read_file_2016 will read for certain headers and will take the values under each
+    it will also calculate totals and ratios and returned as a sorted list of tuples
+    
+    print out the formatted dashed lines      
+    take values from calc totals and divide to find totals for the 2016 data and print formatted
+    take values from calc totals and divide to find totals for the 2000 data and print formatted
+    
+    calc totals will take the sorted list of 2016 data returned from the read_2016_file 
+    function and returns one tuple
+   
+    for plotting will prompt user for "yes" in an if loop
+        will define the values needed for make lists for plot function
+        make a variable to use the data from the make lists for plot function
+        
+        make lists for plot function will takes integers as arguments and return a tuple of three lists
+        
+        take the values from make lists for plot and then enter into plot data function
+        
+        plot data function will plot the three lists as bar graphs
+'''
 
 import pylab   # for plotting
 from operator import itemgetter  # useful for sorting
@@ -11,7 +34,7 @@ def open_file():
     while True:
         #continually prompts user until correct file name given
         try:  
-            usefile = input("Enter a file name: \n")
+            usefile = input("Enter a file name: ")
             fp = open(usefile, 'r')
             return fp
         except FileNotFoundError:
@@ -48,32 +71,32 @@ vi. ratio of non-citizens to total residents (float)'''
     for x in fp:
         x=x.split(",")
         
-        state_str = x[2] #state (str) found at column index 2
+        state = x[2] #state (str) found at column index 2
         
         #this is just the index
         ct_native = find_index(headers,"EST_VC197") 
         #count of native-born residents (int) found in column EST_VC197
-        o_ct_native = int(x[ct_native])
+        oct_native = int(x[ct_native])
         
         #this is just the index
         ct_naturalized = find_index(headers, "EST_VC201")
         #count of naturalized citizens (int) found in column EST_VC201        
-        o_ct_naturalized = int(x[ct_naturalized])
+        o_ct_natural = int(x[ct_naturalized])
         
         #this is just the index
         ct_non_citizens = find_index(headers, "EST_VC211")
         #count of non-citizens (int) found in column EST_VC211
-        o_ct_non_citizens = int(x[ct_non_citizens])
+        o_ct_non_cit = int(x[ct_non_citizens])
         
-        totpeople=int(o_ct_native)+int(o_ct_naturalized)+int(o_ct_non_citizens)
+        totpeople=int(oct_native)+int(o_ct_natural)+int(o_ct_non_cit)
 
         #ratio of naturalized citizens to total residents (float)
-        rto_nauralized_tot_fl=int(o_ct_naturalized)/int(totpeople)
+        rto_naural_tot=int(o_ct_natural)/int(totpeople)
 
         #ratio of naturalized citizens to total residents (float)
-        rto_non_citizens_tot_residents_fl=int(o_ct_non_citizens)/int(totpeople)
+        rto_non_cit_tot=int(o_ct_non_cit)/int(totpeople)
 
-        tup = (state_str, o_ct_native, o_ct_naturalized, rto_nauralized_tot_fl, o_ct_non_citizens, rto_non_citizens_tot_residents_fl)
+        tup=(state,oct_native,o_ct_natural,rto_naural_tot,o_ct_non_cit,rto_non_cit_tot)
         ls.append(tup)
 
     #5 bc it is sorting by last index (ratio non-citizens to total residents)
@@ -122,24 +145,21 @@ i. total count of native-born residents (int)
 ii. total count of naturalized citizens (int)
 iii. total count of non-citizens (int)
 iv. total residents, i.e. the sum of native_born + naturalized + non-native'''
-
-    #probably need to officially take from the actual function but this should work for now
-       
+    #value in data sorted at a particular list location
     ct_native = sum([x[1] for x in data_sorted])
     ct_natural = sum([x[2] for x in data_sorted])
     ct_non_citizens = sum([x[4] for x in data_sorted])
+    #adding for total pop
     tot_pop = int(ct_native) + int(ct_natural) + int(ct_non_citizens)
     tup = (ct_native, ct_natural, ct_non_citizens, tot_pop)
     return tup
 
 def make_lists_for_plot(native_2000,naturalized_2000,non_citizen_2000,native_2016,naturalized_2016,non_citizen_2016):
-    '''Takes six integers as arguments and returns one tuple of three lists, 
+    '''Takes six integers as arguments and returns one tuple of three lists: 
     in this order. 
-    (This is a trivial function to ensure your data is organized for plotting.)
 i. [ native_2000, native_2016]
 ii. [ naturalized_2000, naturalized_2016]
 iii. [ non_citizen_2000, non_citizen_2016]'''
-
     list1 = [ native_2000, native_2016]
     list2 = [ naturalized_2000, naturalized_2016]
     list3 = [ non_citizen_2000, non_citizen_2016]
@@ -148,8 +168,7 @@ iii. [ non_citizen_2000, non_citizen_2016]'''
     
 def plot_data(native_list, naturalized_list, non_citizen_list):
     '''Plot the three lists as bar graphs.
-    This function is written for you. 
-    just have to pass the correct lists for native, naturalized and non-citizens.
+    pass the correct lists for native, naturalized and non-citizens.
     There should be 2 entries in each list corresponding to native, 
     naturalized, and non-citizen counts for the years 2000 and 2016.'''
 
@@ -174,48 +193,54 @@ def plot_data(native_list, naturalized_list, non_citizen_list):
 def main():    
     '''Takes no input. Returns nothing. Call the functions from here. 
     Only call plot_data if the prompt returns “yes”.'''
-    open_file(), open_file()
-    #print("                               2016 Population: Native, Naturalized, Non-Citizen                                \n")
-    print('{:>31s}'.format("2016 Population: Native, Naturalized, Non-Citizen"))
+    #open files for the functions
+    file, file2 = open_file(), open_file() 
+    #call functions
+    sorted_tup = read_2016_file(file)
+    sorted_tup2 = read_2000_file(file2)
+    #title
+    print('{:^112s}'.format("2016 Population: Native, Naturalized, Non-Citizen"))
+    print("")
     print('{:<20s}{:>15s}{:>17s}{:>22s}{:>16s}{:>22s}'.format("State","Native","Naturalized","Percent Naturalized","Non-Citizen","Percent Non-Citizen"))
-    #find_index(header_lst,s)
-    #read_2016_file(fp)
-    '''I noticed we need to print all of those data inside the file of 2016 that each list have six elements are included, but as a matter of fact, the function used to calculate the total residence, total noncitizens, total  native, etc... that only include four elements in it tuple.    If this calc_total function designed to store only four elements, is that mean we have to finish the extra calculation : rate of neutralized in total_residence and rrate of non_native over total_residence in the main function?
-    the ratio calculations should be done within the main() function. '''
+
+    #data with the list locations taken from sorted_tup
+    for x in sorted_tup:
+        print("{:<20s}{:>15,d}{:>17,d}{:>22.1%}{:>16,d}{:>22.1%}".format(x[0],x[1],x[2],x[3],x[4],x[5]))
+        
+    #dashed lines
+    print("-"*112)
     
-    '''
-    At program start prompt the user for the files to be analyzed: year 2016 first, then year 2000.
-     
-    The format string for the table header is:
-    {:<20s}{:>15s}{:>17s}{:>22s}{:>16s}{:>22s}
-    ''' 
+    #take values from calc totals and divide to find totals
+    usevalues = calc_totals(sorted_tup)
+    p2016percent1 = usevalues[1] / usevalues[3]
+    p2016percent2 = usevalues[2] / usevalues[3]
+    #printing with the found locations from the usevalues and calculated totals
+    print("{:<20s}{:>15,d}{:>17,d}{:>22.1%}{:>16,d}{:>22.1%}".format("Total 2016", usevalues[0], usevalues[1], p2016percent1, usevalues[2], p2016percent2))
     
-  
+    #take values from calc totals and divide to find totals
+    p2000percent1 = sorted_tup2[2] / sorted_tup2[0]
+    p2000percent2 = sorted_tup2[3] / sorted_tup2[0]
+    #printing with the found locations from the sorted tup 2 and calculated totals
+    print("{:<20s}{:>15,d}{:>17,d}{:>22.1%}{:>16,d}{:>22.1%}".format("Total 2000", sorted_tup2[1], sorted_tup2[2], p2000percent1, sorted_tup2[3], p2000percent2))
     
-    
-    #31#32                                
-    
-    print("----------------------------------------------------------------------------------------------------------------\n")
+    #if plot is desired
     to_plot = input("Do you want to plot? ")
     if to_plot == "yes":
+        
+        #values needed for make lists for plot function
+        native_2000 = sorted_tup2[1]
+        naturalized_2000 = sorted_tup2[2]
+        non_citizen_2000 = sorted_tup2[3]
+        native_2016 = usevalues[0]
+        naturalized_2016 = usevalues[1]
+        non_citizen_2016 = usevalues[2]
+        
+        enter_into_plot = make_lists_for_plot(native_2000,naturalized_2000,non_citizen_2000,native_2016,naturalized_2016,non_citizen_2016)
+        #values from make lists for plot that will be used for plot data
+        native_list = enter_into_plot[0]
+        naturalized_list = enter_into_plot[1]
+        non_citizen_list = enter_into_plot[2]
         plot_data(native_list, naturalized_list, non_citizen_list)
         
 if __name__ == "__main__":
     main()
-    
-    
-
-    
-    
-
-
-
-
-
-'''
-
-"2016 Population: Native, Naturalized, Non-Citizen"
-("State","Native","Naturalized","Percent Naturalized", "Non-Citizen","Percent Non-Citizen")
-"="*112
-"Do you want to plot? "
-'''
